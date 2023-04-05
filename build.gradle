@@ -1,6 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-//apply from: "$rootDir/gradle/local-aar-config.gradle"
-//apply from: "$rootDir/gradle/local-aar.gradle"
 
 buildscript {
     ext.kotlin_version = '1.8.10'

@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply from: "$rootDir/gradle/library.gradle"
+apply from: "$rootDir/gradle/aar-library.gradle"
 
 android {
     namespace = "com.sample.localaar.demo.feature01"
@@ -38,4 +38,4 @@ dependencies {
     implementation customModulePath(':feature:feature02:myawesomemodule2')
 }
 
-apply from: "$rootDir/gradle/publish.gradle"
+apply from: "$rootDir/gradle/aar-publish.gradle"

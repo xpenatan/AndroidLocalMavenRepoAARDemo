@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply from: "$rootDir/gradle/aar-library.gradle"
 
 android {
     namespace "com.sample.localaar.demo"
@@ -29,8 +30,6 @@ android {
         viewBinding = true
     }
 }
-
-apply from: "$rootDir/gradle/local-aar.gradle"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

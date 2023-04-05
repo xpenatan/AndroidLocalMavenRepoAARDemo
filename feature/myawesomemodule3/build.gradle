@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply from: "$rootDir/gradle/aar-library.gradle"
 
 android {
     namespace "com.sample.localaar.demo.feature"
@@ -26,8 +27,6 @@ android {
     }
 }
 
-apply from: "$rootDir/gradle/library.gradle"
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -36,4 +35,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
-apply from: "$rootDir/gradle/publish.gradle"
+apply from: "$rootDir/gradle/aar-publish.gradle"
