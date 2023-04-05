@@ -5,8 +5,6 @@ publishing {
     publications {
         aar(MavenPublication) {
             project.tasks.publishAarPublicationToMavenLocal.dependsOn("assembleDebug")
-//            println("project.group:: " + project.group)
-//            println("project.name:: " + project.name)
             groupId = project.group
             artifactId = project.name
             version = project.version
@@ -31,13 +29,11 @@ publishing {
 
 private void addDependencyNode(Node dependencies,Dependency it) {
     if (it.group == null || it.group == project.group) {
-        println("ignoring dependency ${it.group}:${it.name}:${it.version}")
         return
     }
 
     def dependency = dependencies.appendNode('dependency')
     if (it.group == rootProject.name) {
-        println("PASSS 1")
         dependency.appendNode('groupId', project.group)
         dependency.appendNode('version', project.version)
     } else {

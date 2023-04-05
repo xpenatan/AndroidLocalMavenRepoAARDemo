@@ -34,8 +34,6 @@ ext.customModulePath = { moduleName ->
             arrName = "${groupStr}:${module}:${project.version}"
         }
         ext.inDevModules[moduleName] = arrName
-        println("arrName: " + arrName)
-        println("")
         return arrName
     } else {
         return project("$moduleName")

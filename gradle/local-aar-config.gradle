@@ -21,5 +21,3 @@ def devModules = (hasProperty("modules")) ? getProperty("modules").split(" ") : 
 devModules.each { moduleName ->
     ext.inDevModules[moduleName] = ""
 }
-
-println("ext.inDevModules: " + ext.inDevModules)
