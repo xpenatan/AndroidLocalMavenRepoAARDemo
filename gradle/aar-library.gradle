@@ -12,7 +12,7 @@ project.group = groupName
 project.version = 1.0
 
 ext.customModulePath = { moduleName ->
-    def containsModule = ext.inDevModules.containsKey(moduleName)
+    def containsModule = ext.inDevModules.contains(moduleName)
 
     if (useAARForDevBuild && !containsModule) {
         def moduleStr = String.valueOf(moduleName)
@@ -33,7 +33,6 @@ ext.customModulePath = { moduleName ->
             groupStr = groupStr.replace("." + module, "")
             arrName = "${groupStr}:${module}:${project.version}"
         }
-        ext.inDevModules[moduleName] = arrName
         return arrName
     } else {
         return project("$moduleName")
