@@ -1,6 +1,7 @@
 apply from: "$rootDir/gradle/settings-helper.gradle"
 
-includeIfEnabled(':app')
-includeIfEnabled(':myawesomemodule1')
-includeIfEnabled(':myawesomemodule2')
-includeIfEnabled(':myawesomemodule3')
+include ":app"
+includeIfEnabled(':feature:feature01:myawesomemodule1')
+includeIfEnabled(':feature:feature02:myawesomemodule2')
+includeIfEnabled(':feature:myawesomemodule3')
+includeIfEnabled(':standalonelib')

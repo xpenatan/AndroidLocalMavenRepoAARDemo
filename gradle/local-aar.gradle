@@ -1,19 +1,43 @@
 apply from: "$rootDir/gradle/local-aar-config.gradle"
 
-ext.customModulePath = { moduleName ->
-    if (useAARForDevBuild && !inDevModules.contains("$moduleName")) {
-        return "${localAARPublishConfig.groupId}$moduleName:${localAARPublishConfig.version}"
-    } else {
-        return project("$moduleName")
-    }
+def groupName = project.name
+if(rootProject != project.parent) {
+    // Prepare arr repository path
+    def path = project.parent.getPath()
+    path = path.replaceFirst(":", "")
+    groupName = path.replace(":", ".")
 }
 
-configurations.all {
-    resolutionStrategy.dependencySubstitution {
-        if (useAARForDevBuild) {
-            inDevModules.each { moduleName ->
-                substitute module("${localAARPublishConfig.groupId}$moduleName:${localAARPublishConfig.version}") using project(moduleName)
-            }
+project.group = groupName
+project.version = 1.0
+
+ext.customModulePath = { moduleName ->
+    def containsModule = ext.inDevModules.containsKey(moduleName)
+
+    if (useAARForDevBuild && !containsModule) {
+        def moduleStr = String.valueOf(moduleName)
+        if(moduleStr.startsWith(":")) {
+            // Remove the first double dots
+            moduleStr = moduleStr.replaceFirst(":", "")
         }
+
+        String[] moduleSplit = moduleStr.split(":")
+        def module = moduleSplit[moduleSplit.length-1]
+        def arrName = ""
+
+        if(moduleSplit.length == 1) {
+            arrName = "${module}:${module}:${version}"
+        }
+        else {
+            String groupStr = moduleStr.replace(":", ".")
+            groupStr = groupStr.replace("." + module, "")
+            arrName = "${groupStr}:${module}:${project.version}"
+        }
+        ext.inDevModules[moduleName] = arrName
+        println("arrName: " + arrName)
+        println("")
+        return arrName
+    } else {
+        return project("$moduleName")
     }
 }

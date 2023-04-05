@@ -1,11 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply from: "$rootDir/gradle/local-aar.gradle"
 
 android {
     namespace "com.sample.localaar.demo"
-
     compileSdk 33
+
     defaultConfig {
         applicationId "com.sample.localaar.demo"
         minSdkVersion 21
@@ -31,6 +30,8 @@ android {
     }
 }
 
+apply from: "$rootDir/gradle/local-aar.gradle"
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -41,7 +42,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.5.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation customModulePath(':myawesomemodule1')
-    implementation customModulePath(':myawesomemodule2')
-    implementation customModulePath(':myawesomemodule3')
+    implementation customModulePath(':feature:feature01:myawesomemodule1')
+    implementation customModulePath(':feature:feature02:myawesomemodule2')
+    implementation customModulePath(':feature:myawesomemodule3')
+    implementation customModulePath(':standalonelib')
 }

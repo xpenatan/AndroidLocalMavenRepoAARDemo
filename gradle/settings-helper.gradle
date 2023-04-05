@@ -8,7 +8,8 @@ ext.includeAlways = { name, path = null ->
 
 ext.includeIfEnabled = { name, path = null ->
     if (ext.useAARForDevBuild) {
-        if (ext.inDevModules.contains(name))
+        def containsModule = ext.inDevModules.containsKey(name)
+        if (containsModule)
             includeAlways(name, path)
     } else {
         includeAlways(name, path)
