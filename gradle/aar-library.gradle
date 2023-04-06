@@ -1,4 +1,4 @@
-apply from: "$rootDir/gradle/local-aar-config.gradle"
+apply from: "$rootDir/gradle/aar-local-config.gradle"
 
 project.version = 1.0
 

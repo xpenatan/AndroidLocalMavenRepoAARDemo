@@ -1,6 +1,4 @@
-import org.gradle.api.internal.artifacts.dependencies.DefaultProjectDependency
-
-apply from: "$rootDir/gradle/local-aar-config.gradle"
+apply from: "$rootDir/gradle/aar-local-config.gradle"
 apply plugin: 'maven-publish'
 
 publishing {
