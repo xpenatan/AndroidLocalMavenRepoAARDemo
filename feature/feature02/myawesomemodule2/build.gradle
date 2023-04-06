@@ -36,7 +36,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation customModulePath(':feature:myawesomemodule3')
+    implementation project(':feature:myawesomemodule3')
+    implementation customModulePath(':standalonelib')
 }
 
 apply from: "$rootDir/gradle/aar-publish.gradle"

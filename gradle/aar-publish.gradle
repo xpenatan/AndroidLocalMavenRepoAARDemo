@@ -1,3 +1,5 @@
+import org.gradle.api.internal.artifacts.dependencies.DefaultProjectDependency
+
 apply from: "$rootDir/gradle/local-aar-config.gradle"
 apply plugin: 'maven-publish'
 
@@ -31,14 +33,11 @@ private void addDependencyNode(Node dependencies,Dependency it) {
     if (it.group == null || it.group == project.group) {
         return
     }
-
     def dependency = dependencies.appendNode('dependency')
-    if (it.group == rootProject.name) {
-        dependency.appendNode('groupId', project.group)
-        dependency.appendNode('version', project.version)
-    } else {
-        dependency.appendNode('groupId', it.group)
-        dependency.appendNode('version', it.version)
-    }
-    dependency.appendNode('artifactId', it.name)
+    def name = it.name
+    def group = it.group
+    def version = it.version
+    dependency.appendNode('groupId', group)
+    dependency.appendNode('version', version)
+    dependency.appendNode('artifactId', name)
 }

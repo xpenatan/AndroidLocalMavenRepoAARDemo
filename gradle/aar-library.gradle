@@ -1,14 +1,5 @@
 apply from: "$rootDir/gradle/local-aar-config.gradle"
 
-def groupName = project.name
-if(rootProject != project.parent) {
-    // Prepare arr repository path
-    def path = project.parent.getPath()
-    path = path.replaceFirst(":", "")
-    groupName = path.replace(":", ".")
-}
-
-project.group = groupName
 project.version = 1.0
 
 ext.customModulePath = { moduleName ->
@@ -26,11 +17,13 @@ ext.customModulePath = { moduleName ->
         def arrName = ""
 
         if(moduleSplit.length == 1) {
-            arrName = "${module}:${module}:${version}"
+            String groupStr = rootProject.name
+            arrName = "${groupStr}:${module}:${version}"
         }
         else {
             String groupStr = moduleStr.replace(":", ".")
             groupStr = groupStr.replace("." + module, "")
+            groupStr = rootProject.name + "." + groupStr
             arrName = "${groupStr}:${module}:${project.version}"
         }
         return arrName
