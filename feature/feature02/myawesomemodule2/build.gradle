@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply from: "$rootDir/gradle/aar-library.gradle"
+apply from: "$rootDir/gradle/aar-publish.gradle"
 
 android {
     namespace "com.sample.localaar.demo.feature02"
@@ -36,8 +37,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation project(':feature:myawesomemodule3')
+    implementation customModulePath(':feature:myawesomemodule3')
     implementation customModulePath(':standalonelib')
 }
-
-apply from: "$rootDir/gradle/aar-publish.gradle"

@@ -3,5 +3,5 @@ apply from: "$rootDir/gradle/aar-settings.gradle"
 include ":app"
 includeIfEnabled(":feature:feature01:myawesomemodule1")
 includeIfEnabled(":feature:feature02:myawesomemodule2")
-include ":feature:myawesomemodule3"
+includeIfEnabled ":feature:myawesomemodule3"
 includeIfEnabled(":standalonelib")

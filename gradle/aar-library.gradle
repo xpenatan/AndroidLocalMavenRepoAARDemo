@@ -31,3 +31,15 @@ ext.customModulePath = { moduleName ->
         return project("$moduleName")
     }
 }
+
+if(ext.useAARForDevBuild) {
+    configurations.configureEach {
+        resolutionStrategy.dependencySubstitution.all { DependencySubstitution dependency ->
+            def targetProject = findProject(":${dependency.requested.module}")
+            if(targetProject != null) {
+                println("Update Target: " + targetProject)
+                dependency.useTarget targetProject
+            }
+        }
+    }
+}

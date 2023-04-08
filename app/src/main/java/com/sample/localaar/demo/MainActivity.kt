@@ -6,7 +6,7 @@ import com.sample.localaar.demo.databinding.ActivityMainBinding
 import com.sample.localaar.myawesomemodule1.AwesomeModule1
 import com.sample.localaar.myawesomemodule2.AwesomeModule2
 import com.sample.localaar.myawesomemodule3.AwesomeModule3
-import com.sample.localaar.myawesomemodule3.AwesomeStandAloneModule
+//import com.sample.localaar.myawesomemodule3.AwesomeStandAloneModule
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +20,6 @@ class MainActivity : AppCompatActivity() {
         binding.textView2.text = AwesomeModule1.greet
         binding.textView3.text = AwesomeModule2.greet
         binding.textView4.text = AwesomeModule3.greet
-        binding.textView5.text = AwesomeStandAloneModule.greet
+//        binding.textView5.text = AwesomeStandAloneModule.greet
     }
 }
